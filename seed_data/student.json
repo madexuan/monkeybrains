@@ -1,0 +1,32 @@
+{
+	"student": [
+		{
+			"name_first": "Paul",
+			"name_last": "McCartney",
+			"rank_stripes": 2,
+			"rank_type": "blue",
+			"program": "gorilla"
+		},
+		{
+			"name_first": "Ringo",
+			"name_last": "Starr",
+			"rank_stripes": 0,
+			"rank_type": "purple",
+			"program": "leader"
+		},
+		{
+			"name_first": "John",
+			"name_last": "Lenon",
+			"rank_stripes": 3,
+			"rank_type": "grey",
+			"program": "submission samurai"
+		},
+		{
+			"name_first": "George",
+			"name_last": "Harrison",
+			"rank_stripes": 4,
+			"rank_type": "white",
+			"program": "monkey"
+		}
+	]
+}

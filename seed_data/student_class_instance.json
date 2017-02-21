@@ -1,0 +1,34 @@
+{
+	"student_class_instance": [
+		{
+			"student_id": 1,
+			"class_instance_id": 1,
+			"attendance": "P"
+		},
+		{
+			"student_id": 1,
+			"class_instance_id": 2,
+			"attendance": "T"
+		},
+		{
+			"student_id": 1,
+			"class_instance_id": 3,
+			"attendance": "A"
+		},
+		{
+			"student_id": 2,
+			"class_instance_id": 1,
+			"attendance": "A"
+		},
+		{
+			"student_id": 3,
+			"class_instance_id": 2,
+			"attendance": "P"
+		},
+		{
+			"student_id": 4,
+			"class_instance_id": 3,
+			"attendance": "P"
+		}
+	]
+}

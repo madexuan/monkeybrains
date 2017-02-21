@@ -1,0 +1,19 @@
+{
+	"coach": [
+		{
+			"email": "janet@example.com",
+			"name_first": "Janet",
+			"name_last": "Kenmotsu"
+		},
+		{
+			"email": "eric@example.com",
+			"name_first": "Eric",
+			"name_last": "Example"
+		},
+		{
+			"email": "coach@example.com",
+			"name_first": "Coach",
+			"name_last": "Test"
+		}
+	]
+}

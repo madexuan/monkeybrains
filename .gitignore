@@ -1,0 +1,26 @@
+# Don't check auto-generated stuff into git
+coverage
+build
+node_modules
+stats.json
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+
+# tags
+.tags
+.tags_sorted_by_file
+
+# Compiled Python files
+*.pyc
+
+# Instance Configuration
+instance/*
+
+# Virtual Env
+monkeybrains_env/*
+
+# .cache
+.cache/*
