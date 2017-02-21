@@ -1,3 +1,4 @@
+-e git+git@github.com:janet/monkeybrains.git@6c0ad343b1c5fdbf63c4aaf7148deefc173783f3#egg=api
 appdirs==1.4.0
 appnope==0.1.0
 click==6.6
