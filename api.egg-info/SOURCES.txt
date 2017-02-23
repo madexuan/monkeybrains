@@ -1,4 +1,3 @@
-MANIFEST.in
 api/__init__.py
 api/database.py
 api/runserver.py
