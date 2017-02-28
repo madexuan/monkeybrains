@@ -15,6 +15,7 @@ Run server @ http://localhost:5000/
 
 Run tests
 
+    $ (monkeybrains_env) cd api
     $ (monkeybrains_env) pytest
 
 ## Database
