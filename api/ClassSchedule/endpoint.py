@@ -7,7 +7,7 @@ from .model import ClassSchedule
 from .model import ClassInstance
 
 
-@app.route('/class_schedule')
+@app.route('/api/class_schedule')
 def get_class_schedule():
     class_schedule = ClassSchedule.query.all()
     result = to_json(class_schedule)

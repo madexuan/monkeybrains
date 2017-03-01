@@ -16,7 +16,7 @@ def get_student_class_instance():
     return tardy_student.student.name_first
 
 
-@app.route('/student_class_schedule')
+@app.route('/api/student_class_schedule')
 def get_student_class_schedule():
     saturday_class = StudentClassSchedule.query.filter(StudentClassSchedule.class_schedule_id == 3).all()
 
