@@ -52,3 +52,10 @@ Create local postgres database @ postgresql://localhost/monkeys (first time only
 Add dummy data to database - can be re-run to reset database
 
     $ (monkeybrains_env) python seed_database.py
+
+# Deployed Versions
+
+## Heroku
+
+example call:
+https://sbg-monkeybrains.herokuapp.com/class_schedule
