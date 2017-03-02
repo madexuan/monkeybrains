@@ -1,4 +1,30 @@
-# To start development
+# About
+
+Monkeybrains is an api server for the [Monkeys app](https://github.com/janet/monkeys)
+
+# To start development locally
+
+1. Clone this repo `git clone git@github.com:janet/monkeybrains.git`
+1. Run nginx @ localhost:8080 (instructions below)
+1. Run api server @ localhost:5000 (instructions below)
+1. Create and seed database (instructions below)
+1. Run frontend server (instructions @ [Monkeys app](https://github.com/janet/monkeys))
+1. Monkeys frontend app connected to Monkeybrains api server @ localhost:8080
+
+## Nginx (osx)
+
+1. Install nginx [Coderwall link](https://coderwall.com/p/dgwwuq/installing-nginx-in-mac-os-x-maverick-with-homebrew) for more info on nginx
+
+        $ brew install nginx
+
+2. Use nginx config from this repo
+
+        $ rm /usr/local/etc/nginx/nginx.conf
+        $ ln -s `pwd`/nginx.conf /usr/local/etc/nginx/nginx.conf
+
+3. Start nginx proxy server @ localhost:8080
+
+        $ sudo nginx
 
 ## Api Server
 First time only, create python 3 virtualenv and install requirements and app
@@ -26,16 +52,3 @@ Create local postgres database @ postgresql://localhost/monkeys (first time only
 Add dummy data to database - can be re-run to reset database
 
     $ (monkeybrains_env) python seed_database.py
-
-
-## Gotchas
-
-**Issue:**
-
-CORS error when using google chrome in development
-
-    Fetch API cannot load http://localhost:5000/student_class_schedule. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
-
-**Solution:**
-
-Download chrome extension Allow-Control-Allow-Origin:* and enable it when developing
