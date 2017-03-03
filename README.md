@@ -58,4 +58,4 @@ Add dummy data to database - can be re-run to reset database
 ## Heroku
 
 example call:
-https://sbg-monkeybrains.herokuapp.com/class_schedule
+https://sbg-monkeybrains.herokuapp.com/api/class_schedule
