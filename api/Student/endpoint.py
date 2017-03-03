@@ -4,10 +4,11 @@ from api.Base.helper import to_json
 from .model import Student, StudentClassInstance, StudentClassSchedule
 
 
-@app.route('/student')
+@app.route('/api/students')
 def get_students():
-    ringo = Student.query.filter(Student.name_first == 'Ringo').one()
-    return ringo.name_first
+    students = Student.query.all()
+    students = to_json(students)
+    return students
 
 
 @app.route('/student_class_instance')

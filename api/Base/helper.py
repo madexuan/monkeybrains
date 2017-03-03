@@ -17,8 +17,7 @@ def to_dict(item):
     result = {}
 
     for column in columns_names:
-        if column != 'id':
-            _to_dict(item, column, result)
+        _to_dict(item, column, result)
 
     return result
 
