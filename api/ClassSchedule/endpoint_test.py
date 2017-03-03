@@ -36,7 +36,7 @@ class ClassScheduleTestCase(unittest.TestCase):
         os.unlink(self.db_filename)
 
     def test_get_class_schedule(self):
-        response = self.app.get('/class_schedule')
+        response = self.app.get('/api/class_schedule')
 
         # convert data from byte to string
         data = response.data.decode('utf-8')

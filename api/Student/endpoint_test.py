@@ -36,7 +36,7 @@ class ApiTestCase(unittest.TestCase):
         os.unlink(self.db_filename)
 
     def test_get_student_class_schedule(self):
-        response = self.app.get('/student_class_schedule')
+        response = self.app.get('/api/student_class_schedule')
 
         # convert data from byte to string
         data = response.data.decode('utf-8')
