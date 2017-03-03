@@ -44,6 +44,16 @@ class ApiTestCase(unittest.TestCase):
         assert response[0]['student_id'] == 1
         assert response[0]['class_schedule_id'] == 3
 
+    def test_get_students(self):
+        response = self.app.get('/api/students')
+
+        # convert data from byte to string
+        data = response.data.decode('utf-8')
+        response = json.loads(data)
+        assert response[0]['id'] == 1
+        assert response[0]['name_first'] == 'Paul'
+        assert response[-1]['name_first'] == 'George'
+        assert response[-1]['rank_type'] == 'white'
 
 if __name__ == '__main__':
     unittest.main()
