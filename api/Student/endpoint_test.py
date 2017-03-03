@@ -55,5 +55,24 @@ class ApiTestCase(unittest.TestCase):
         assert response[-1]['name_first'] == 'George'
         assert response[-1]['rank_type'] == 'white'
 
+    def test_get_student_class_instance(self):
+        response = self.app.get('/api/student_class_instance/1')
+
+        # convert data from byte to string
+        data = response.data.decode('utf-8')
+        response = json.loads(data)
+        assert response[0]['id'] == 1
+        assert response[0]['attendance'] == 'P'
+        assert response[0]['student_id'] == 1
+
+    def test_get_student_class_instance_incorrect_id(self):
+        response = self.app.get('/api/student_class_instance/100')
+
+        # convert data from byte to string
+        data = response.data.decode('utf-8')
+        response = json.loads(data)
+        assert response == []
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -11,10 +11,11 @@ def get_students():
     return students
 
 
-@app.route('/student_class_instance')
-def get_student_class_instance():
-    tardy_student = StudentClassInstance.query.filter(StudentClassInstance.attendance == 'T').one()
-    return tardy_student.student.name_first
+@app.route('/api/student_class_instance/<int:class_instance_id>')
+def get_student_class_instance(class_instance_id):
+    attendance = StudentClassInstance.query.filter(StudentClassInstance.class_instance_id == class_instance_id).all()
+    attendance = to_json(attendance)
+    return attendance
 
 
 @app.route('/api/student_class_schedule')
