@@ -73,6 +73,14 @@ class ApiTestCase(unittest.TestCase):
         response = json.loads(data)
         assert response == []
 
+    def test_update_student_class_instance_attendance(self):
+        response = self.app.get('/api/student_class_instance/1/T')
+
+        # convert data from byte to string
+        data = response.data.decode('utf-8')
+        response = json.loads(data)
+        assert response == {'student_id': 1, 'id': 1, 'class_instance_id': 1, 'attendance': 'T', 'notes': None}
+
 
 if __name__ == '__main__':
     unittest.main()
