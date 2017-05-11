@@ -16,4 +16,4 @@ class Coach(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<Coach id={} email{}>".format(self.id, self.email)
+        return "<Coach id={} email={}>".format(self.id, self.email)
