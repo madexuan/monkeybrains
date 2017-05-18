@@ -14,8 +14,9 @@ def get_coach():
 
 @app.route('/api/process_login', methods=['POST'])
 def process_login():
-    email = request.form.get("email")
-    # password = request.form.get("password")
+    response = request.get_json()
+    email = response.get('email')
+    # password = response.get("password")
 
     error_message = {'error': 'Email and Password not recognized. Please re-enter.'}
 
