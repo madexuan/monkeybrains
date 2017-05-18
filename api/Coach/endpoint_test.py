@@ -1,6 +1,7 @@
 import os
 import unittest
 import tempfile
+import json
 
 from server import app
 from api.database import db, connect_db
@@ -35,10 +36,12 @@ class CoachTestCase(unittest.TestCase):
         os.unlink(self.db_filename)
 
     def login(self, email, password):
-        return self.app.post('/api/process_login', data=dict(
-            email=email,
-            password=password
-        ))
+        return self.app.post('/api/process_login',
+                             data=json.dumps(dict(
+                                 email=email,
+                                 password=password
+                             )),
+                             content_type='application/json')
 
     def test_login(self):
         login_success = self.login('janet@example.com', 'default')
