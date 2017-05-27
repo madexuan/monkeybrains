@@ -14,13 +14,13 @@ def get_coach():
     return coach_janet.email
 
 
-@app.route('/api/process_login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def process_login():
     response = request.get_json()
     email = response.get('email')
     password = response.get('password')
 
-    error_message = {'error': 'Email and Password not recognized. Please re-enter.'}
+    error_message = {'error': 'Email and Password combination not recognized.'}
 
     try:
         coach = Coach.query.filter_by(email=email).one()

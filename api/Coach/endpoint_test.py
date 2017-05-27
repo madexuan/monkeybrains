@@ -36,7 +36,7 @@ class CoachTestCase(unittest.TestCase):
         os.unlink(self.db_filename)
 
     def login(self, email, password):
-        return self.app.post('/api/process_login',
+        return self.app.post('/api/login',
                              data=json.dumps(dict(
                                  email=email,
                                  password=password
@@ -90,7 +90,7 @@ class CoachTestCase(unittest.TestCase):
         login_success = self.login('janet@example.com', 'newpassword')
         assert b'janet@example.com' in login_success.data
         login_fail = self.login('idontexist@example.com', 'hacker')
-        assert b'Email and Password not recognized. Please re-enter' in login_fail.data
+        assert b'Email and Password combination not recognized' in login_fail.data
 
 
 if __name__ == '__main__':
