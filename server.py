@@ -3,7 +3,6 @@ from flask import Flask
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.config.from_pyfile('config.py')
 
 
 # import from api package at the end of the file here to
