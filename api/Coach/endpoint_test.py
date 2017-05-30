@@ -5,12 +5,13 @@ import json
 
 from server import app
 from api.database import db, connect_db
+from api.Base.login_helper import LoginTestMixin
 from seed_database import (load_student, load_coach, load_class_schedule,
                            load_class_instance, load_student_class_instance,
                            load_student_class_schedule)
 
 
-class CoachTestCase(unittest.TestCase):
+class CoachTestCase(unittest.TestCase, LoginTestMixin):
 
     def setUp(self):
         self.db_fd, self.db_filename = tempfile.mkstemp()
@@ -34,33 +35,6 @@ class CoachTestCase(unittest.TestCase):
     def tearDown(self):
         os.close(self.db_fd)
         os.unlink(self.db_filename)
-
-    def login(self, email, password):
-        return self.app.post('/api/login',
-                             data=json.dumps(dict(
-                                 email=email,
-                                 password=password
-                             )),
-                             content_type='application/json')
-
-    def register(self, email, password, name_first, name_last, is_admin):
-        return self.app.post('/api/register',
-                             data=json.dumps(dict(
-                                email=email,
-                                password=password,
-                                name_first=name_first,
-                                name_last=name_last,
-                                is_admin=is_admin,
-                             )),
-                             content_type='application/json')
-
-    def reset_password(self, email, password):
-        return self.app.post('/api/reset_password',
-                             data=json.dumps(dict(
-                                email=email,
-                                password=password
-                             )),
-                             content_type='application/json')
 
     def test_login_flow(self):
         # REGISTER
@@ -92,6 +66,9 @@ class CoachTestCase(unittest.TestCase):
         login_fail = self.login('idontexist@example.com', 'hacker')
         assert b'Email and Password combination not recognized' in login_fail.data
 
+        # LOGOUT
+        logout = self.logout()
+        assert b'logged out' in logout.data
 
 if __name__ == '__main__':
     unittest.main()

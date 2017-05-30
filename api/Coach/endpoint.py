@@ -1,12 +1,14 @@
 from flask import request
+import flask_login
 from sqlalchemy.orm.exc import NoResultFound
 import binascii
+import json
 import os
 
-import json
 from server import app
 from .model import Coach
 from api.database import db
+
 
 @app.route('/coach')
 def get_coach():
@@ -28,6 +30,7 @@ def process_login():
         if str(coach.password_hash) != password_entered_hash:
             return json.dumps(error_message)
         else:
+            flask_login.login_user(coach)
             return json.dumps({'success': email})
 
     except NoResultFound:
@@ -73,6 +76,7 @@ def reset_password():
     salt = salt.decode()
 
     error_message = {'error': 'Reset password failed'}
+
     try:
         coach = Coach.query.filter_by(email=email).one()
         coach.password_salt = salt
@@ -83,3 +87,10 @@ def reset_password():
 
     except NoResultFound:
         return json.dumps(error_message)
+
+
+@app.route('/api/logout', methods=['POST'])
+@flask_login.login_required
+def logout():
+    flask_login.logout_user()
+    return json.dumps({'success': 'logged out'})
