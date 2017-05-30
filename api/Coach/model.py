@@ -1,7 +1,10 @@
+from flask_login import UserMixin
+
+from api import login_manager
 from api.database import db
 
 
-class Coach(db.Model):
+class Coach(UserMixin, db.Model):
     """TODO"""
 
     __tablename__ = "coach"
@@ -14,6 +17,17 @@ class Coach(db.Model):
     password_hash = db.Column(db.String(64), nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
+    # override UserMixin get_id method
+    def get_id(self):
+        return self.email
+
     def __repr__(self):
         """Provide helpful representation when printed."""
         return "<Coach id={} email={}>".format(self.id, self.email)
+
+
+@login_manager.user_loader
+def load_user(email):
+    # use .first() to return None if no match
+    # as per Flask-Login requirements
+    return Coach.query.filter_by(email=email).first()
