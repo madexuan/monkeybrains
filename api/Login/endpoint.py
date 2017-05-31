@@ -16,7 +16,7 @@ def process_login():
     email = response.get('email')
     password = response.get('password')
 
-    error_message = {'error': 'Email and Password combination not recognized.'}
+    error_message = {'error': 'Email and Password not recognized.'}
 
     try:
         coach = Coach.query.filter_by(email=email).one()

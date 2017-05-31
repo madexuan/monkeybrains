@@ -33,7 +33,7 @@ class LoginTestCase(BaseTestCase):
         login_success = self.login('janet@example.com', 'newpassword')
         assert b'janet@example.com' in login_success.data
         login_fail = self.login('idontexist@example.com', 'hacker')
-        assert b'Email and Password combination not recognized' in login_fail.data
+        assert b'Email and Password not recognized' in login_fail.data
 
         # LOGOUT
         logout = self.logout()
