@@ -7,3 +7,6 @@ DEBUG = os.environ.get('FLASK_DEBUG', default=False)  # always set debug to fals
 # sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', default='postgresql://localhost/monkeys')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# flask-bcrypt
+BCRYPT_LOG_ROUNDS = 12
