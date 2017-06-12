@@ -12,9 +12,9 @@ class Coach(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(124), nullable=False, unique=True)
-    # email_confirmed = db.Column(db.Boolean, nullable=False, default=False)
-    name_first = db.Column(db.String(64), nullable=True, unique=True)
-    name_last = db.Column(db.String(64), nullable=True, unique=True)
+    email_confirmed = db.Column(db.Boolean, nullable=False, default=False)
+    name_first = db.Column(db.String(64), nullable=False)
+    name_last = db.Column(db.String(64), nullable=False)
     _password = db.Column(db.String(128))
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 

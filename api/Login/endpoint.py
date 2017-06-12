@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, render_template, url_for
 import flask_login
 from sqlalchemy.orm.exc import NoResultFound
 import json
@@ -6,6 +6,7 @@ import json
 from server import app
 from api.database import db
 from api.Coach.model import Coach
+from .utils import ts, send_email
 
 
 @app.route('/api/login', methods=['POST'])
@@ -35,7 +36,7 @@ def register():
     password = response.get('password')
     name_first = response.get('name_first')
     name_last = response.get('name_last')
-    is_admin = response.get('is_admin')
+    is_admin = False
 
     error_message = {'error': 'Registration failed'}
 
@@ -47,6 +48,39 @@ def register():
             password=password,
             is_admin=is_admin)
         db.session.add(new_coach)
+        db.session.commit()
+
+        # Now sending the email confirmation link
+        subject = "Confirm your email"
+
+        token = ts.dumps(new_coach.email, salt='email-confirm-key')
+
+        confirm_url = url_for(
+            'confirm_email',
+            token=token,
+            _external=True)
+
+        html = render_template(
+            'email/activate.html',
+            confirm_url=confirm_url)
+
+        send_email(new_coach.email, subject, html)
+
+        return json.dumps({'success': email})
+    except:
+        return json.dumps(error_message)
+
+
+@app.route('/api/confirm/<token>')
+def confirm_email(token):
+
+    error_message = {'error': 'Confirming email failed.'}
+
+    try:
+        email = ts.loads(token, salt='email-confirm-key', max_age=86400)
+        coach = Coach.query.filter_by(email=email).one()
+        coach.email_confirmed = True
+        db.session.add(coach)
         db.session.commit()
 
         return json.dumps({'success': email})
