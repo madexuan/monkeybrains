@@ -29,6 +29,9 @@ class LoginTestMixin:
                              )),
                              content_type='application/json')
 
+    def confirm(self, token):
+        return self.app.get('/api/confirm/' + token)
+
     def logout(self):
         return self.app.post('/api/logout')
 
