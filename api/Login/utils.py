@@ -1,7 +1,5 @@
 from itsdangerous import URLSafeTimedSerializer
-from flask_mail import Message
 
-from api import mail
 from server import app
 
 
