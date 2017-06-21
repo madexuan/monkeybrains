@@ -21,3 +21,6 @@ monkeybrains_env/*
 
 # .cache
 .cache/*
+
+# Sendgrid Env
+sendgrid.env
