@@ -23,8 +23,8 @@ class LoginTestMixin:
                              data=json.dumps(dict(
                                 email=email,
                                 password=password,
-                                name_first=name_first,
-                                name_last=name_last,
+                                nameFirst=name_first,
+                                nameLast=name_last,
                                 is_admin=is_admin,
                              )),
                              content_type='application/json')
