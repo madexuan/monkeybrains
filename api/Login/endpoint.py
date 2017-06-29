@@ -25,7 +25,7 @@ def process_login():
         else:
             return json.dumps(error_message)
 
-    except NoResultFound:
+    except:
         return json.dumps(error_message)
 
 
@@ -34,8 +34,8 @@ def register():
     response = request.get_json()
     email = response.get('email')
     password = response.get('password')
-    name_first = response.get('name_first')
-    name_last = response.get('name_last')
+    name_first = response.get('nameFirst')
+    name_last = response.get('nameLast')
     is_admin = False
 
     error_message = {'error': 'Registration failed'}
