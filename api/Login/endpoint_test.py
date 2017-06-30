@@ -1,9 +1,11 @@
 import unittest
 from unittest.mock import patch
+import os
 
 from api.Base.endpoint_test import BaseTestCase
 from api.Coach.model import Coach
 from .utils import ts
+from .endpoint import get_confirm_url
 
 
 class LoginTestCase(BaseTestCase):
@@ -58,6 +60,11 @@ class LoginTestCase(BaseTestCase):
         # LOGOUT
         logout = self.logout()
         assert b'logged out' in logout.data
+
+    def test_get_confirm_url(self):
+        expected = os.environ.get('FRONTEND_URL') + 'confirm/' + 'token'
+        test_case = get_confirm_url('token')
+        assert(test_case) == expected
 
 
 if __name__ == '__main__':
