@@ -2,6 +2,7 @@ from flask import request, render_template, url_for
 import flask_login
 from sqlalchemy.orm.exc import NoResultFound
 import json
+import os
 
 from server import app
 from api.database import db
@@ -27,6 +28,11 @@ def process_login():
 
     except:
         return json.dumps(error_message)
+
+
+def get_confirm_url(token):
+    url = os.environ.get('FRONTEND_URL') + 'confirm/' + token
+    return url
 
 
 @app.route('/api/register', methods=['POST'])
@@ -55,10 +61,7 @@ def register():
 
         token = ts.dumps(new_coach.email, salt='email-confirm-key')
 
-        confirm_url = url_for(
-            'confirm_email',
-            token=token,
-            _external=True)
+        confirm_url = get_confirm_url(token)
 
         html = render_template(
             'email/activate.html',
